@@ -615,7 +615,7 @@ remotes::install_github("wtassinari/queimadasR", force = TRUE)
 **Citação do pacote queimadasR:**
 
 **Formato ABNT:**
-> TASSINARI, Wagner S.; PACIFICO, Roni dos Santos Jorge; FERREIRA, Manuela dos Santos; OLIVEIRA, Liliane de Fátima Antônio; HOKERBERG, Yara Hahr Marques; SANTOS, Heloísa Ferreira Pinto; SAUCHA, Camylla Veloso Valença; OLIVEIRA, Raquel de Vasconcellos Carvalhaes. **queimadasR**: Pacote para download e análise de dados de queimadas do INPE. Versão 0.2.0. 2026. Disponível em: https://github.com/wtassinari/queimadasR
+TASSINARI, Wagner S.; PACIFICO, Roni dos Santos Jorge; FERREIRA, Manuela dos Santos; OLIVEIRA, Liliane de Fátima Antônio; HOKERBERG, Yara Hahr Marques; SANTOS, Heloísa Ferreira Pinto; SAUCHA, Camylla Veloso Valença; OLIVEIRA, Raquel de Vasconcellos Carvalhaes. **queimadasR**: Pacote para download e análise de dados de queimadas do INPE. Versão 0.2.0. 2026. Disponível em: https://github.com/wtassinari/queimadasR
 
 **Formato BibTeX:**
 ```bibtex
@@ -635,86 +635,3 @@ remotes::install_github("wtassinari/queimadasR", force = TRUE)
 
 **Mais informações:** [Portal BDQueimadas INPE](https://terrabrasilis.dpi.inpe.br/queimadas/bdqueimadas/)
 
-### Outras Referências
-
-- **microdatasus**: Acesso a dados do DATASUS - [GitHub](https://github.com/rfsaldanha/microdatasus)
-- **ggplot2**: Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York.
-- **dplyr**: Wickham, H., et al. (2023). dplyr: A Grammar of Data Manipulation. [CRAN](https://cran.r-project.org/package=dplyr)
-- **INPE - Queimadas**: [Instituto Nacional de Pesquisas Espaciais](http://www.inpe.br/queimadas/)
-- **DATASUS**: [Departamento de Informática do SUS](https://datasus.saude.gov.br/)
-
-## 🤝 Contribuições
-
-Contribuições são bem-vindas! Para contribuir:
-
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 🐛 Relatório de Problemas
-
-Se encontrar algum problema ao executar o script, por favor:
-
-1. Verifique se todos os pacotes estão instalados corretamente
-2. Verifique sua conexão com a internet
-3. Consulte a seção "Notas Importantes" acima
-4. Abra uma [issue](https://github.com/wtassinari/paper_queimadasR/issues) com:
-   - Descrição detalhada do problema
-   - Mensagem de erro completa
-   - Versão do R e pacotes utilizados
-   - Sistema operacional
-
-## 📝 Citação
-
-Se utilizar este código em sua pesquisa, favor citar:
-
-```bibtex
-@article{tassinari2025queimadasR,
-  title={queimadasR: pacote para download e análise de dados de queimadas 
-         do Instituto Nacional de Pesquisas Espaciais (INPE) com aplicações 
-         em Saúde Ambiental},
-  author={Tassinari, Wagner S. and others},
-  journal={[Journal Name]},
-  year={2025},
-  volume={[Volume]},
-  pages={[Pages]},
-  doi={[DOI]}
-}
-```
-
-## 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-## 👨‍💻 Autores
-
-- **Wagner S. Tassinari** - Autor principal
-- **Roni dos Santos Jorge Pacifico** - Colaborador
-- **Manuela dos Santos Ferreira** - Colaboradora
-- **Liliane de Fátima Antônio Oliveira** - Colaboradora
-- **Yara Hahr Marques Hokerberg** - Colaboradora
-- **Heloísa Ferreira Pinto Santos** - Colaboradora
-- **Camylla Veloso Valença Saucha** - Colaboradora
-- **Raquel de Vasconcellos Carvalhaes Oliveira** - Colaboradora
-
-## 🙏 Agradecimentos
-
-- Instituto Nacional de Pesquisas Espaciais (INPE) pela disponibilização dos dados de queimadas
-- Departamento de Informática do SUS (DATASUS) pelos dados de internações hospitalares
-- Comunidade R pelo desenvolvimento dos pacotes utilizados
-- Universidade Federal Rural do Rio de Janeiro e Instituto Nacional de Infectologia/FIOCRUZ
-
-## 📞 Contato
-
-Para dúvidas ou sugestões, entre em contato através de:
-
-- **GitHub Issues**: [Issues](https://github.com/wtassinari/paper_queimadasR/issues)
-- **Repositório queimadasR**: [wtassinari/queimadasR](https://github.com/wtassinari/queimadasR)
-
----
-
-**Última atualização**: Janeiro de 2025  
-**Versão**: 1.0  
-**Status**: ✅ Ativo e mantido
