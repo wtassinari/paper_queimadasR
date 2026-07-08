@@ -84,22 +84,6 @@ remotes::install_github("rfsaldanha/microdatasus")
    - Os gráficos serão salvos automaticamente em PNG
    - Os dados processados serão salvos em CSV
 
-## 📁 Estrutura do Repositório
-
-```
-paper_queimadasR/
-├── README.md                          # Este arquivo
-├── script_figuras_queimadasR.R        # Script principal com todas as análises
-├── dados/                             # Dados processados (CSV)
-│   ├── dados_focos_internacoes.csv
-│   └── dados_clima_frp.csv
-├── figuras/                           # Gráficos gerados (PNG)
-│   ├── figura1_serie_historica.png
-│   └── figura2_distribuicao_mensal.png
-└── artigo/                            # Artigo científico (se aplicável)
-    └── queimadasR_saude_ambiental.pdf
-```
-
 ## 💻 Script Completo
 
 O script abaixo reproduz as análises e gráficos apresentados no artigo. Ele está totalmente documentado e comentado para facilitar a compreensão e modificação.
