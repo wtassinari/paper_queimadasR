@@ -340,9 +340,23 @@ ggsave("figura1_serie_historica_mensal.png", fig1, width = 12, height = 7, dpi =
 ## ============================================================
 ## FIGURA 2: Distribuição mensal — precipitação média, dias sem
 ## chuva (média) e FRP médio na data de ocorrência dos focos
-## (Região Norte, 2022-2024)
+## (Região Norte, 2020-2025)
 ## ============================================================
+#
 
+library(dplyr)
+library(ggplot2)
+library(scales)
+
+# ------------------------------------------------------------
+# 1. Limpeza: substituir -999 por NA em numero_dias_sem_chuva
+# ------------------------------------------------------------
+focos <- focos %>%
+  mutate(numero_dias_sem_chuva = na_if(numero_dias_sem_chuva, -999))
+
+# ------------------------------------------------------------
+# 2. Agregação mensal
+# ------------------------------------------------------------
 meses_ordem <- c("jan", "fev", "mar", "abr", "mai", "jun",
                  "jul", "ago", "set", "out", "nov", "dez")
 
@@ -351,56 +365,76 @@ dados_figura2 <- focos %>%
   mutate(mes_num = as.numeric(mes)) %>%   # garanta que 'mes' já é 1-12
   group_by(mes_num) %>%
   summarise(
-    precipitacao_media = mean(precipitacao, na.rm = TRUE),
-    frp_media          = mean(frp, na.rm = TRUE),
+    precipitacao_media   = mean(precipitacao, na.rm = TRUE),
+    frp_media            = mean(frp, na.rm = TRUE),
+    dias_sem_chuva_media = mean(numero_dias_sem_chuva, na.rm = TRUE),
     .groups = "drop"
   ) %>%
   arrange(mes_num) %>%
   mutate(mes_nome = factor(meses_ordem[mes_num], levels = meses_ordem))
 
-# Fator de escala calculado a partir dos próprios dados
-fator_frp <- max(dados_figura2$precipitacao_media, na.rm = TRUE) /
-             max(dados_figura2$frp_media, na.rm = TRUE)
+# ------------------------------------------------------------
+# 3. Fatores de escala — agora tudo em função do FRP (base = coluna)
+# ------------------------------------------------------------
+fator_precip <- max(dados_figura2$frp_media, na.rm = TRUE) /
+  max(dados_figura2$precipitacao_media, na.rm = TRUE)
 
+fator_dias <- max(dados_figura2$frp_media, na.rm = TRUE) /
+  max(dados_figura2$dias_sem_chuva_media, na.rm = TRUE)
+
+# ------------------------------------------------------------
+# 4. Gráfico
+# ------------------------------------------------------------
 fig2 <- ggplot(dados_figura2, aes(x = mes_nome)) +
   
-  # Coluna de precipitação média
-  geom_col(aes(y = precipitacao_media),
-           fill = "#5DADE2", alpha = 0.7, width = 0.6) +
+  # Coluna de FRP médio (vermelha)
+  geom_col(aes(y = frp_media),
+           fill = "#E74C3C", alpha = 0.7, width = 0.6) +
   
-  # Linha de FRP médio (com fator de escala)
-  geom_line(aes(y = frp_media * fator_frp, color = "FRP médio"),
+  # Linha de precipitação média
+  geom_line(aes(y = precipitacao_media * fator_precip, color = "Precipitação média"),
             linewidth = 1.2, group = 1) +
-  geom_point(aes(y = frp_media * fator_frp, color = "FRP médio"), size = 3) +
+  geom_point(aes(y = precipitacao_media * fator_precip, color = "Precipitação média"), size = 3) +
   
-  # Escala Y com eixo secundário
+  # Linha de dias sem chuva (média)
+  geom_line(aes(y = dias_sem_chuva_media * fator_dias, color = "Dias sem chuva (média)"),
+            linewidth = 1.2, group = 1) +
+  geom_point(aes(y = dias_sem_chuva_media * fator_dias, color = "Dias sem chuva (média)"), size = 3) +
+  
+  # Escala Y com eixo secundário (referência: precipitação, à direita)
   scale_y_continuous(
-    name = "Precipitação média (mm)",
+    name = "FRP médio (W/m²)",
     labels = label_comma(big.mark = ".", decimal.mark = ","),
-    sec.axis = sec_axis(~. / fator_frp, 
-                        name = "FRP médio (W/m²)",
+    sec.axis = sec_axis(~. / fator_precip,
+                        name = "Precipitação média (mm)",
                         labels = label_comma(big.mark = ".", decimal.mark = ","))
   ) +
   
-  # Cores
+  # Cores das linhas
   scale_color_manual(
     name = "",
-    values = c("FRP médio" = "#E74C3C")
+    values = c(
+      "Precipitação média"     = "#5DADE2",
+      "Dias sem chuva (média)" = "#23c423"
+    )
   ) +
   
-  # Títulos e labels
+  # Labels
   labs(
     x = "Mês",
     y = NULL
   ) +
   
   # Tema
+  theme_minimal() +
   theme(
-    axis.text.x = element_text(size = 10),
-    axis.text.y = element_text(size = 9),
-    plot.title  = element_text(size = 11, face = "bold", hjust = 0),
-    panel.grid.major.y = element_line(color = "gray90"),
-    panel.grid.minor   = element_blank()
+    axis.text.x        = element_text(size = 10),
+    axis.text.y        = element_text(size = 9),
+    plot.title          = element_text(size = 11, face = "bold", hjust = 0),
+    panel.grid.major.y  = element_line(color = "gray90"),
+    panel.grid.minor    = element_blank(),
+    legend.position     = "bottom",
+    legend.title        = element_blank()
   )
 
 print(fig2)
