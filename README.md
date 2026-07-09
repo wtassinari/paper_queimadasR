@@ -303,7 +303,7 @@ fig1 <- ggplot(dados_figura1, aes(x = data)) +
     limits = c(0, limite_focos),
     labels = label_comma(big.mark = ".", decimal.mark = ","),
     sec.axis = sec_axis(
-      ~. / fator,  # transformação inversa: converte de volta para a escala real de internações
+      ~. / fator,
       name = "Internações por causas respiratória e circulatória",
       labels = label_comma(big.mark = ".", decimal.mark = ",")
     )
@@ -320,17 +320,21 @@ fig1 <- ggplot(dados_figura1, aes(x = data)) +
   scale_x_date(date_breaks = "3 months", date_labels = "%b/%Y", expand = c(0, 0)) +
   
   labs(
-    # title = "Série histórica mensal dos focos de queimadas e das internações\npor causas respiratórias e circulatórias na Região Norte do Brasil (2020-2025)",
     x = "Data",
     y = "Focos de queimadas"
   ) +
   
+  theme_minimal() +
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 9),
-    axis.text.y = element_text(size = 9),
-    plot.title = element_text(size = 11, face = "bold", hjust = 0),
-    panel.grid.major.y = element_line(color = "gray90"),
-    panel.grid.minor = element_blank()
+    axis.text.x         = element_text(angle = 45, hjust = 1, size = 9),
+    axis.text.y          = element_text(size = 9),
+    plot.title           = element_text(size = 11, face = "bold", hjust = 0),
+    panel.grid.major.y   = element_line(color = "gray90"),
+    panel.grid.minor     = element_blank(),
+    panel.background     = element_rect(fill = "white", color = NA),
+    plot.background       = element_rect(fill = "white", color = NA),
+    legend.position       = "bottom",
+    legend.title          = element_blank()
   )
 
 print(fig1)
